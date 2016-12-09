@@ -17,20 +17,18 @@ package com.example.android.sunshine.app;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Checkable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.android.sunshine.app.data.WeatherContract;
+import com.example.android.sunshine.app.sync.SunshineSyncAdapter;
 
 /**
  * {@link ForecastAdapter} exposes a list of weather forecasts
@@ -59,6 +57,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         public final TextView mDescriptionView;
         public final TextView mHighTempView;
         public final TextView mLowTempView;
+//GoogleApiClient mGoogleApiClient;
 
         public ForecastAdapterViewHolder(View view) {
             super(view);
@@ -68,6 +67,13 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
             mHighTempView = (TextView) view.findViewById(R.id.list_item_high_textview);
             mLowTempView = (TextView) view.findViewById(R.id.list_item_low_textview);
             view.setOnClickListener(this);
+//            mGoogleApiClient =new GoogleApiClient.Builder()
+//                    .addApi(Wearable.API)
+//                    .addConnectionCallbacks(this)
+//                    .addOnConnectionFailedListener(this)
+//                    .build();
+//            mGoogleApiClient.connect();
+
         }
 
         @Override
@@ -102,9 +108,9 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
      */
     @Override
     public ForecastAdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        if ( viewGroup instanceof RecyclerView ) {
+        if(viewGroup instanceof RecyclerView) {
             int layoutId = -1;
-            switch (viewType) {
+            switch(viewType) {
                 case VIEW_TYPE_TODAY: {
                     layoutId = R.layout.list_item_forecast_today;
                     break;
@@ -129,17 +135,18 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         int defaultImage;
         boolean useLongToday;
 
-        switch (getItemViewType(position)) {
+        switch(getItemViewType(position)) {
             case VIEW_TYPE_TODAY:
                 defaultImage = Utility.getArtResourceForWeatherCondition(weatherId);
                 useLongToday = true;
+                SunshineSyncAdapter.syncImmediately(mContext);
                 break;
             default:
                 defaultImage = Utility.getIconResourceForWeatherCondition(weatherId);
                 useLongToday = false;
         }
 
-        if ( Utility.usingLocalGraphics(mContext) ) {
+        if(Utility.usingLocalGraphics(mContext)) {
             forecastAdapterViewHolder.mIconView.setImageResource(defaultImage);
         } else {
             Glide.with(mContext)
@@ -208,7 +215,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
 
     @Override
     public int getItemCount() {
-        if ( null == mCursor ) return 0;
+        if(null == mCursor) return 0;
         return mCursor.getCount();
     }
 
@@ -223,8 +230,8 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     }
 
     public void selectView(RecyclerView.ViewHolder viewHolder) {
-        if ( viewHolder instanceof ForecastAdapterViewHolder ) {
-            ForecastAdapterViewHolder vfh = (ForecastAdapterViewHolder)viewHolder;
+        if(viewHolder instanceof ForecastAdapterViewHolder) {
+            ForecastAdapterViewHolder vfh = (ForecastAdapterViewHolder) viewHolder;
             vfh.onClick(vfh.itemView);
         }
     }
