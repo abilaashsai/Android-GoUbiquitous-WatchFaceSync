@@ -30,7 +30,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.wearable.watchface.CanvasWatchFaceService;
 import android.support.wearable.watchface.WatchFaceService;
@@ -42,14 +41,11 @@ import android.view.WindowInsets;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.wearable.DataApi;
 import com.google.android.gms.wearable.DataEvent;
 import com.google.android.gms.wearable.DataEventBuffer;
 import com.google.android.gms.wearable.DataMap;
 import com.google.android.gms.wearable.DataMapItem;
-import com.google.android.gms.wearable.PutDataMapRequest;
-import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
 
 import java.text.SimpleDateFormat;
@@ -519,7 +515,7 @@ public class DigitalWatchFaceService extends CanvasWatchFaceService {
             if(!is24Hour) {
                 x += mColonWidth;
                 canvas.drawText(getAmPmString(
-                        mCalendar.get(Calendar.AM_PM)), bounds.centerX()+x, bounds.centerY()-55-timeDown, mAmPmPaint);
+                        mCalendar.get(Calendar.AM_PM)), bounds.centerX()+x-10, bounds.centerY()-55-timeDown, mAmPmPaint);
             }
 
             canvas.drawText(
@@ -689,19 +685,6 @@ public class DigitalWatchFaceService extends CanvasWatchFaceService {
                 Log.d(TAG, "onConnected: " + connectionHint);
             }
             Wearable.DataApi.addListener(mGoogleApiClient, Engine.this);
-
-            PutDataMapRequest putDataMapRequest = PutDataMapRequest.create("/initiate");
-            putDataMapRequest.getDataMap().putBoolean("connected", false);
-            PutDataRequest request = putDataMapRequest.asPutDataRequest();
-            Wearable.DataApi.putDataItem(mGoogleApiClient, request)
-                    .setResultCallback(new ResultCallback<DataApi.DataItemResult>() {
-                        @Override
-                        public void onResult(@NonNull DataApi.DataItemResult dataItemResult) {
-                            if(!dataItemResult.getStatus().isSuccess()) {
-                            } else {
-                            }
-                        }
-                    });
             updateConfigDataItemAndUiOnStartup();
 
         }

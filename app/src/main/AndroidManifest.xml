@@ -105,9 +105,7 @@
         android:name="android.content.SyncAdapter"
         android:resource="@xml/syncadapter"/>
       <intent-filter>
-        <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
-        <!--<action android:name="com.google.android.gms.wearable.DATA_CHANGED" />-->
-        <data android:scheme="wear" android:host="*" android:pathPattern="/initiate" />
+        <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED" />
       </intent-filter>
     </service>
 

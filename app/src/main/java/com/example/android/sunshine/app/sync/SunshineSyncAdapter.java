@@ -61,8 +61,7 @@ import java.net.URL;
 import java.util.Vector;
 import java.util.concurrent.ExecutionException;
 
-//public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,DataApi.DataListener {
-public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {//implements DataApi.DataListener {
+public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
     public final String LOG_TAG = SunshineSyncAdapter.class.getSimpleName();
     public static final String ACTION_DATA_UPDATED =
             "com.example.android.sunshine.app.ACTION_DATA_UPDATED";
@@ -109,8 +108,6 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {//implemen
         if(mGoogleApiClient==null) {
             mGoogleApiClient = new GoogleApiClient.Builder(context)
                     .addApi(Wearable.API)
-                    //     .addConnectionCallbacks(this)
-                    //     .addOnConnectionFailedListener(this)
                     .build();
         }
     }
@@ -399,11 +396,6 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {//implemen
                                 });
                     }
                 }
-//                else{
-//                    min="";
-//                    max="";
-//                    weatherId=0;
-//                }
                 ContentValues weatherValues = new ContentValues();
 
                 weatherValues.put(WeatherContract.WeatherEntry.COLUMN_LOC_KEY, locationId);
@@ -420,7 +412,6 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {//implemen
                 cVVector.add(weatherValues);
             }
 
-            int inserted = 0;
             // add to database
             if(cVVector.size() > 0) {
                 ContentValues[] cvArray = new ContentValues[cVVector.size()];
