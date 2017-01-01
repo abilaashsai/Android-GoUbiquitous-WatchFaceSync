@@ -1,4 +1,4 @@
-#Android GoUbiquitous Watch Face Sync 
+#Android GoUbiquitous - Watch Face Sync 
 ===================================
 
 Synchronizes weather information from [OpenWeatherMap](https://openweathermap.org/) on **Android Phones**, **Tablets** and **Watch**. Watch Face in Wear displays the weather information and uses services to sync the data
