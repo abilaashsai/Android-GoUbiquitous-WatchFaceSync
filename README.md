@@ -7,10 +7,10 @@ Synchronizes weather information from [OpenWeatherMap](https://openweathermap.or
 ---------------
 - **Setup mobile and wear**:
   You need to first connect your mobile and wear, either using emulator or physical devices.
-  In my case I used physical mobile phone and wear emulator. For setup please refer [Documentation](https://developer.android.com/training/wearables/apps/creating.html)
+  In my case I used physical mobile phone and wear emulator. For setup please refer [Documentation](https://developer.android.com/training/wearables/apps/creating.html).
 
 - **Clone the project**:
-  Go to any directory in your machine and run the command on the terminal
+  Go to any directory in your machine and run the below command on the terminal:
   ```
   git clone https://github.com/abilaashsai/Android-GoUbiquitous-WatchFaceSync.git
   ```
