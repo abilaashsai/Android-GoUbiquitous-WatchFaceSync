@@ -31,7 +31,9 @@ submitting a pull request through GitHub.
 
 ##Issue:
 -------
-Initially when _Watch Face_ is selected, data is not synced. When some data is changed in mobile, it is reflected in Watch Face.
+- Initially when _Watch Face_ is selected, data is not synced. When some data is changed in mobile, it is reflected in Watch Face.
+
+- In mobile app not able to scroll down to view the list.
 
 ##Screenshot
 -------
