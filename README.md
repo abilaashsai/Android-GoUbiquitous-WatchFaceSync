@@ -33,6 +33,10 @@ submitting a pull request through GitHub.
 -------
 Initially when _Watch Face_ is selected, data is not synced. When some data is changed in mobile, it is reflected in Watch Face.
 
+##Screenshot
+-------
+![Watch Face Screenshot](https://github.com/abilaashsai/Android-GoUbiquitous-WatchFaceSync/blob/master/Screen%20Shot%202016-12-09%20at%208.57.43%20PM.png)
+
 License
 -------
 The contents of this repository are covered under the [MIT License](https://github.com/abilaashsai/Android-GoUbiquitous-WatchFaceSync/blob/master/LICENSE).
