@@ -1,52 +1,38 @@
-Advanced Android Sample App
+#Android GoUbiquitous Watch Face Sync 
 ===================================
 
-Synchronizes weather information from OpenWeatherMap on Android Phones and Tablets. Used in the Udacity Advanced Android course.
+Synchronizes weather information from [OpenWeatherMap](https://openweathermap.org/) on **Android Phones**, **Tablets** and **Watch**. Watch Face in Wear displays the weather information and uses services to sync the data
 
-Pre-requisites
---------------
-Android SDK 21 or Higher
-Build Tools version 21.1.2
-Android Support AppCompat 22.2.0
-Android Support Annotations 22.2.0
-Android Support GridLayout 22.2.0
-Android Support CardView 22.2.0
-Android Support Design 22.2.0
-Android Support RecyclerView 22.2.0
-Google Play Services GCM 7.0.0
-BumpTech Glide 3.5.2
-
-
-Getting Started
+##Run it on your machine
 ---------------
-This sample uses the Gradle build system.  To build this project, use the
-"gradlew build" command or use "Import Project" in Android Studio.
+- **Setup mobile and wear**:
+  You need to first connect your mobile and wear, either using emulator or physical devices.
+  In my case I used physical mobile phone and wear emulator. For setup please refer [Documentation](https://developer.android.com/training/wearables/apps/creating.html)
 
-Support
+- **Clone the project**:
+  Go to any directory in your machine and run the command on the terminal
+  ```
+  git clone https://github.com/abilaashsai/Android-GoUbiquitous-WatchFaceSync.git
+  ```
+- **Get OpenWeatherMap API key**:
+  - Go to [OpenWeatherMap](https://openweathermap.org/) and get the key. It's totally free.
+  - In [build.gradle(Module:app)](https://github.com/abilaashsai/Android-GoUbiquitous-WatchFaceSync/blob/5502b3ce0cca2032ef664c12431a0f300ce6bd84/app/build.gradle) replace `ENTER_YOUR_KEY_HERE` with your _API_KEY_ on line 22.
+   ```
+   it.buildConfigField 'String', 'OPEN_WEATHER_MAP_API_KEY', '"ENTER_YOUR_KEY_HERE"'
+   ```
+
+- **Run the project**:
+  I use Android Studio. Here you have to _Import_ the project and _Run_ on _wear_ and _mobile_.
+
+##Contribution
 -------
-
-- Google+ Community: https://plus.google.com/communities/105153134372062985968
-- Stack Overflow: http://stackoverflow.com/questions/tagged/android
-
 Patches are encouraged, and may be submitted by forking this project and
-submitting a pull request through GitHub. Please see CONTRIBUTING.md for more details.
+submitting a pull request through GitHub.
+
+##Issue:
+-------
+Initially when _Watch Face_ is selected, data is not synced. When some data is changed in mobile, it is reflected in Watch Face.
 
 License
 -------
-Copyright 2015 The Android Open Source Project, Inc.
-
-Licensed to the Apache Software Foundation (ASF) under one or more contributor
-license agreements.  See the NOTICE file distributed with this work for
-additional information regarding copyright ownership.  The ASF licenses this
-file to you under the Apache License, Version 2.0 (the "License"); you may not
-use this file except in compliance with the License.  You may obtain a copy of
-the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
-License for the specific language governing permissions and limitations under
-the License.
-
+The contents of this repository are covered under the [MIT License](https://github.com/abilaashsai/Android-GoUbiquitous-WatchFaceSync/blob/master/LICENSE).
