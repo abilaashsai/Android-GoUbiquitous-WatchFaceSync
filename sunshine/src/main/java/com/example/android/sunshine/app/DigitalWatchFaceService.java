@@ -291,27 +291,7 @@ public class DigitalWatchFaceService extends CanvasWatchFaceService {
             DigitalWatchFaceService.this.unregisterReceiver(mReceiver);
         }
 
-        @Override
-        public void onApplyWindowInsets(WindowInsets insets) {
-            if(Log.isLoggable(TAG, Log.DEBUG)) {
-                Log.d(TAG, "onApplyWindowInsets: " + (insets.isRound() ? "round" : "square"));
-            }
-            super.onApplyWindowInsets(insets);
-
-            // Load resources that have alternate values for round watches.
-            Resources resources = DigitalWatchFaceService.this.getResources();
-            boolean isRound = insets.isRound();
-            mXOffset = resources.getDimension(isRound
-                    ? R.dimen.digital_x_offset_round : R.dimen.digital_x_offset);
-            float textSize = resources.getDimension(isRound
-                    ? R.dimen.digital_text_size_round : R.dimen.digital_text_size);
-            float tempTextSize = resources.getDimension(isRound
-                    ? R.dimen.digital_temp_text_size_round : R.dimen.digital_temp_text_size);
-            float tempMaxTextSize = resources.getDimension(isRound
-                    ? R.dimen.digital_temp_max_text_size_round : R.dimen.digital_temp_max_text_size);
-            float amPmSize = resources.getDimension(isRound
-                    ? R.dimen.digital_am_pm_size_round : R.dimen.digital_am_pm_size);
-
+        private void initializeParameters(boolean isRound) {
             if(isRound) {
                 rectLeft = 40;
                 rectTop = 15;
@@ -334,6 +314,30 @@ public class DigitalWatchFaceService extends CanvasWatchFaceService {
                 timeDown = 0;
             }
 
+        }
+
+        @Override
+        public void onApplyWindowInsets(WindowInsets insets) {
+            if(Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "onApplyWindowInsets: " + (insets.isRound() ? "round" : "square"));
+            }
+            super.onApplyWindowInsets(insets);
+
+            // Load resources that have alternate values for round watches.
+            Resources resources = DigitalWatchFaceService.this.getResources();
+            boolean isRound = insets.isRound();
+            mXOffset = resources.getDimension(isRound
+                    ? R.dimen.digital_x_offset_round : R.dimen.digital_x_offset);
+            float textSize = resources.getDimension(isRound
+                    ? R.dimen.digital_text_size_round : R.dimen.digital_text_size);
+            float tempTextSize = resources.getDimension(isRound
+                    ? R.dimen.digital_temp_text_size_round : R.dimen.digital_temp_text_size);
+            float tempMaxTextSize = resources.getDimension(isRound
+                    ? R.dimen.digital_temp_max_text_size_round : R.dimen.digital_temp_max_text_size);
+            float amPmSize = resources.getDimension(isRound
+                    ? R.dimen.digital_am_pm_size_round : R.dimen.digital_am_pm_size);
+
+            initializeParameters(isRound);
             mDatePaint.setTextSize(resources.getDimension(R.dimen.digital_date_text_size));
             mHourPaint.setTextSize(textSize);
             mMinutePaint.setTextSize(textSize);
