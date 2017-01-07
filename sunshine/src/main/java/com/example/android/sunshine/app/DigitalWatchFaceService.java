@@ -183,7 +183,7 @@ public class DigitalWatchFaceService extends CanvasWatchFaceService {
         float mXOffset;
         String mAmString;
         String mPmString;
-        int mInteractiveBackgroundColor =ContextCompat.getColor(getBaseContext(),R.color.primary_background);
+        int mInteractiveBackgroundColor = ContextCompat.getColor(getBaseContext(), R.color.primary_background);
         int mInteractiveHourDigitsColor =
                 DigitalWatchFaceUtil.COLOR_VALUE_DEFAULT_AND_AMBIENT_HOUR_DIGITS;
         int mInteractiveMinuteDigitsColor =
@@ -515,7 +515,7 @@ public class DigitalWatchFaceService extends CanvasWatchFaceService {
             if(!is24Hour) {
                 x += mColonWidth;
                 canvas.drawText(getAmPmString(
-                        mCalendar.get(Calendar.AM_PM)), bounds.centerX()+x-10, bounds.centerY()-55-timeDown, mAmPmPaint);
+                        mCalendar.get(Calendar.AM_PM)), bounds.centerX() + x - 10, bounds.centerY() - 55 - timeDown, mAmPmPaint);
             }
 
             canvas.drawText(
